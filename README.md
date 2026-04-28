@@ -156,3 +156,9 @@ public class PrestamoService {
     }
 }
 ```
+
+### 10. Decisiones de Diseño
+
+- Para el modelo usé `record` en `Libro`, `Estudiante`, `Docente` y `Prestamo` porque son datos inmutables que no necesitan lógica interna. Las interfaces `Recurso` y `Socio` permiten que el sistema soporte distintos tipos sin modificar el código existente.
+- Los repositorios usan `HashMap` en memoria como implementación, pero el servicio solo conoce la interfaz `Repository<T, ID>`, lo que permite cambiar la implementación sin tocar la lógica de negocio.
+- Los servicios reciben sus repositorios por constructor para cumplir con inyección de dependencias. El manejo de errores se hace con una jerarquía propia que extiende `BibliotecaException` para tener mensajes claros en cada caso.
