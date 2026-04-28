@@ -6,10 +6,10 @@
 ### Datos del Alumno
 
 | Campo | Respuesta |
-| :--- | :--- |
-| **Nombre** | |
-| **Apellido** | |
-| **Legajo** | |
+| :--- |:----------|
+| **Nombre** | Luciano   |
+| **Apellido** | Toneatti  |
+| **Legajo** | 62202     |
 
 > **Fecha de entrega:** 28 de Abril de 2026
 
