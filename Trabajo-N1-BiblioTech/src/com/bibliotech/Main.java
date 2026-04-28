@@ -5,6 +5,7 @@ import com.bibliotech.model.*;
 import com.bibliotech.repository.*;
 import com.bibliotech.service.*;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 
@@ -136,11 +137,29 @@ public class Main {
             if (historial.isEmpty()) {
                 System.out.println("El socio no tiene préstamos registrados.");
             } else {
-                historial.forEach(p -> System.out.println(
-                    "- " + p.recurso().titulo() +
+                historial.forEach(p -> {
+                    String estado;
+                    if (p.fechaDevolucion() == null) {
+                        long diasTranscurridos = java.time.temporal.ChronoUnit.DAYS.between(p.fechaPrestamo(), LocalDate.now());
+                        long diasRestantes = 7 - diasTranscurridos;
+                        if (diasRestantes > 0) {
+                            estado = "En curso | Vence en " + diasRestantes + " día(s)";
+                        } else {
+                            estado = "En curso | ⚠ Vencido hace " + Math.abs(diasRestantes) + " día(s)";
+                        }
+                    } else {
+                        long dias = java.time.temporal.ChronoUnit.DAYS.between(p.fechaPrestamo(), p.fechaDevolucion());
+                        long retraso = dias - 7;
+                        if (retraso > 0) {
+                            estado = "Devuelto: " + p.fechaDevolucion() + " | ⚠ Retraso de " + retraso + " día(s)";
+                        } else {
+                            estado = "Devuelto: " + p.fechaDevolucion() + " | ✓ A tiempo";
+                        }
+                    }
+                    System.out.println("- " + p.recurso().titulo() +
                         " | Prestado: " + p.fechaPrestamo() +
-                        " | Devuelto: " + (p.fechaDevolucion() != null ? p.fechaDevolucion() : "En curso")
-                ));
+                        " | " + estado);
+                });
             }
         } catch (BibliotecaException e) {
             System.out.println("Error: " + e.getMessage());
