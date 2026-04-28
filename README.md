@@ -6,10 +6,10 @@
 ### Datos del Alumno
 
 | Campo | Respuesta |
-| :--- |:----------|
-| **Nombre** | Luciano   |
-| **Apellido** | Toneatti  |
-| **Legajo** | 62202     |
+| :--- | :--- |
+| **Nombre** | |
+| **Apellido** | |
+| **Legajo** | |
 
 > **Fecha de entrega:** 28 de Abril de 2026
 
@@ -58,7 +58,7 @@ El sistema debe gestionar los siguientes procesos clave:
 - **Optional**: Evitar el uso de `null` en los retornos de búsqueda.
 
 #### Arquitectura y Diseño
-- **Capas**: Clara separación entre `model`, `repository`, `service` y el punto de entrada `com.bibliotech.Main (CLI)`.
+- **Capas**: Clara separación entre `model`, `repository`, `service` y el punto de entrada `Main (CLI)`.
 - **Inyección de Dependencias**: Los servicios deben recibir sus repositorios por constructor (usando interfaces).
 - **SOLID**: Se evaluará estrictamente la aplicación de cada principio.
 
@@ -75,7 +75,7 @@ src/
 │   ├── repository/     # Interfaces y sus implementaciones (in-memory)
 │   ├── service/        # Lógica de negocio (Interfaces + Impl)
 │   ├── exception/      # Jerarquía de excepciones de negocio
-│   └── com.bibliotech.Main.java       # Orquestador del sistema (CLI)
+│   └── Main.java       # Orquestador del sistema (CLI)
 ```
 
 ---
